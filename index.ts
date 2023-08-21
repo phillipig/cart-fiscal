@@ -1,4 +1,4 @@
-import { Cart } from "./src/cart";
+import { Cart } from "./src/cart2";
 
 let c = new Cart();
 

@@ -1,4 +1,4 @@
-import { Cart } from "../src/cart";
+import { Cart } from "../src/cart2";
 
 describe('*** Teste básico do Objeto Cart ***', () => {
 
