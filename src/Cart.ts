@@ -1,13 +1,14 @@
 import { CartItem } from "./cart-item";
 import { CartPayment } from "./cart-payment";
+import { CartTotal } from "./cart-total";
 
 export class Cart {
 
-    private total = 0;
     private itens: CartItem[] = [];
     private payments: CartPayment[] = [];
+    private total: CartTotal = new CartTotal();
 
-    public getTotal() {
+    public getTotal(): CartTotal {
         return this.total;
     }
 }
