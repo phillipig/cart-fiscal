@@ -1,5 +1,5 @@
-import { CartItem } from "./CartItem";
-import { CartPayment } from "./CartPayment";
+import { CartItem } from "./cart-item";
+import { CartPayment } from "./cart-payment";
 
 export class Cart {
 
