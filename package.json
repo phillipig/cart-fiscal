@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "login": "npm login",
+    "whoami": "npm whoami",
+    "publish": "npm publish --access public"
   },
   "keywords": [],
   "author": "",
