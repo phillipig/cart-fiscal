@@ -19,9 +19,13 @@ export class Cart {
 
     private calculateTotal() {
         let t: number = 0;
+        let d: number = 0;
+        let i: number = 0;
+
         for (let item of this.itens) {
             t += item.getTotal();
         }
+
         this.total.setTotal(t);
     }
 }
