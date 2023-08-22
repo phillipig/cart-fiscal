@@ -4,7 +4,15 @@ export class CartTotal {
     private discount: number = 0;
     private increase: number = 0;
 
-    public getTotal(): CartTotal {
+    public getCartTotal(): CartTotal {
         return this;
+    }
+
+    public setTotal (total: number) {
+        this.total = total;
+    }
+
+    public getTotal (): number {
+        return this.total;
     }
 }
