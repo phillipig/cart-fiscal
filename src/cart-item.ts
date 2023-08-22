@@ -1,3 +1,5 @@
+import { round } from "./service/currency-service"
+
 export class CartItem {
 
     private id: string = ""
@@ -15,6 +17,35 @@ export class CartItem {
         this.unitaryValue;
         this.calculateTotal(amount, unitaryValue);
     }
+
+    /*
+    //TODO
+    public removeItem(id: string){ 
+
+    }
+
+    //TODO
+    public addDiscount(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeDiscount(id) {
+
+    }
+
+    //TODO
+    public addIncrease(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeIncrease(id) {
+
+    }
+
+    //TODO fiscal (futuro)
+    */
 
     public getTotal(): number {
         return this.total;

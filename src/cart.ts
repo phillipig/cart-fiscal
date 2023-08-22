@@ -13,6 +13,33 @@ export class Cart {
         this.calculateTotal();
     }
 
+    /*
+    //TODO
+    public removeItem(id: string){ 
+
+    }
+
+    //TODO
+    public addDiscount(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeDiscount(id) {
+
+    }
+
+    //TODO
+    public addIncrease(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeIncrease(id) {
+
+    }
+    */
+
     public getCartTotal(): CartTotal {
         return this.total;
     }
@@ -27,5 +54,13 @@ export class Cart {
         }
 
         this.total.setTotal(t);
+    }
+
+    public toJson(): string{
+        return JSON.stringify(this);
+    }
+
+    public fromJson(json: string){
+        //TODO
     }
 }
