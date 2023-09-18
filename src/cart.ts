@@ -13,11 +13,34 @@ export class Cart {
         calculateTotal(this);
     }
 
-    public getItens() : CartItem[] {
-        return this.itens;
+    /*
+    //TODO
+    public removeItem(id: string){ 
+
     }
 
-    public getTotal(): CartTotal {
+    //TODO
+    public addDiscount(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeDiscount(id) {
+
+    }
+
+    //TODO
+    public addIncrease(id, value, type [PERCENTAGE | VALUE]) {
+
+    }
+
+    //TODO
+    public removeIncrease(id) {
+
+    }
+    */
+
+    public getCartTotal(): CartTotal {
         return this.total;
     }
 
@@ -40,5 +63,13 @@ export class Cart {
 
     public getCartTotal(): CartTotal {
         return this.total;
+    }
+
+    public toJson(): string{
+        return JSON.stringify(this);
+    }
+
+    public fromJson(json: string){
+        //TODO
     }
 }
