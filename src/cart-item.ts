@@ -20,6 +20,23 @@ export class CartItem {
         return this.total;
     }
 
+    //TODO
+    /*addDiscount(id)
+
+    removeDiscount(){
+
+    }
+
+    addIncrease()
+
+    removeIncrease()
+
+    addTaxes()
+
+    addPis
+    addCofins
+    addIcms*/
+
     private calculateTotal(amount: number, unitaryValue: number) {
         this.total = amount * unitaryValue;
     }
