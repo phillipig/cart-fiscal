@@ -46,24 +46,34 @@ export class Cart {
 
     //TODO
     removeItem(id: string){
+        let index = this.itens.findIndex((item) => item.id === id);
+        if(index !== -1) {
+            this.itens.splice(index, 1);
+        }
+        return this.itens;
+    }
+    
+
+    public getItem(id: string) {
 
     }
 
-    getItem(id: string) {
+    public getItens(): CartItem[] {
+        return this.itens;
+    }
 
+    public getTotal(): CartTotal {
+        return this.total;
     }
 
     public loadCart(){
-        //carrega o cart de um JSON
+        return this;
     }
 
     public saveCart(){
         //transforma o cart em um JSON
     }
 
-    public getCartTotal(): CartTotal {
-        return this.total;
-    }
 
     public toJson(): string{
         return JSON.stringify(this);

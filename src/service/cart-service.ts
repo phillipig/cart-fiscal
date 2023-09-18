@@ -1,13 +1,14 @@
 import { Cart } from "../cart";
+import { round } from "./currency-service";
 
 export function calculateTotal(cart: Cart) {
-    let t: number = 0;
-    let d: number = 0;
-    let i: number = 0;
+    let total: number = 0;
+    let discount: number = 0;
+    let increase: number = 0;
 
     for (let item of cart.getItens()) {
-        t += item.getTotal();
+        total += item.getTotal();
     }
-
-    cart.getTotal().setTotal(t);
+    
+    cart.getTotal().setTotal(round(total));
 }
