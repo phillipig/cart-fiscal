@@ -19,9 +19,11 @@ export function addDiscount(id:string, value: number, type: TypeDiscountEnum, ca
     if (type === "PERCENTAGE") {
         const percentage = value / 100;
         let discount = cart.getTotal().getTotal() * percentage;
-        cart.getTotal().setTotal(cart.getTotal().getTotal() - discount);
+        const discountTotal = (cart.getTotal().getTotal() - discount);
+        cart.getTotal().setTotal(round(discountTotal, 2));
     } else if (type === "VALUE") {
-        cart.getTotal().setTotal(cart.getTotal().getTotal() - value);
+        const discountTotal = cart.getTotal().getTotal() - value;
+        cart.getTotal().setTotal(round(discountTotal, 2));
     }
 }
 
@@ -29,9 +31,11 @@ export function addIncrease(id: string, value: number, type: TypeDiscountEnum, c
     if (type === "PERCENTAGE") {
         const percentage = value / 100;
         const increase = cart.getTotal().getTotal() * percentage;
-         cart.getTotal().setTotal(cart.getTotal().getTotal() + increase);
+        const increateTotal = (cart.getTotal().getTotal() + increase);
+        cart.getTotal().setTotal(round(increateTotal));
     } else if (type === "VALUE") {
-         cart.getTotal().setTotal(cart.getTotal().getTotal() + value);
+        const increateTotal = (cart.getTotal().getTotal() + value);
+         cart.getTotal().setTotal(round(increateTotal));
     }
 
     calculateTotal(cart);
