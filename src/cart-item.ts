@@ -1,8 +1,8 @@
 import { CartTotal } from "./cart-total"
+import { TypeDiscountEnum } from "./enum/TypeDiscountEnum"
 import { round } from "./service/currency-service"
 
 export class CartItem {
-
     public id: string = ""
     public description: string = ""
     public amount: number = 0
@@ -28,23 +28,49 @@ export class CartItem {
         return this.total;
     }
 
-    // //TODO
-    // public addDiscount(id, value, type [PERCENTAGE | VALUE]) {
+    public addDiscount(id: string, value: number, type: TypeDiscountEnum) {
+        if (this.id === id) {
+            if (type === "PERCENTAGE") {
+                const percentage = value / 100;
+                this.discount = this.total * percentage;
+                this.total = this.total - this.discount;
+            } else if (type === "VALUE") {
+                this.discount = value;
+                this.total = this.total - this.discount;
+            }
+        }
+    }
+    
+    public removeDiscount(id: string) {
+        if (this.id === id) {
+            this.total = this.total + this.discount;
+            this.discount = 0;
+        }
+    }
+    
+    public addIncrease(id: string, value: number, type: TypeDiscountEnum) {
+        if (this.id === id) {
+            if (type === "PERCENTAGE") {
+                const percentage = value / 100;
+                this.increase = this.total * percentage;
+                this.total = this.total + this.increase;
+            } else if (type === "VALUE") {
+                this.increase = value;
+                this.total = this.total + this.increase;
+            }
+        }
+    }
+    
+    public removeIncrease(id: string) {
+        if (this.id === id) {
+            this.total = this.total - this.increase;
+            this.increase = 0;
+        }
+    }
 
-    // }
-
-    // //TODO
-    // public removeDiscount(id) {
-
-    // }
-
-    // //TODO
-    // public addIncrease(id, value, type [PERCENTAGE | VALUE]) {
-
-    // }
-
-    // //TODO
-    // public removeIncrease(id) {
+    public getDiscount(): number {
+        return this.discount;
+    }
 
     // }
 

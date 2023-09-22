@@ -8,7 +8,8 @@
     "test": "jest",
     "login": "npm login",
     "whoami": "npm whoami",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "test:debug": "node --inspect node --inspect-brk ./node_modules/.bin/jest -i"
   },
   "keywords": [],
   "author": "Phillipi O. Giobini",
@@ -20,4 +21,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
+
 }

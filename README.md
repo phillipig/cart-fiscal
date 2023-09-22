@@ -6,7 +6,7 @@
     [X] Adicionar itens ao cart
     [X] Remover itens do cart
     [X] Verificando total do cart
-    [ ] Adicionar desconto no total do cart
+    [ ] Adicionar desconto no total do cart 
     [ ] Adicionar acréscimo no total do cart
     [ ] Adicionar forma de pagamento no cart
 
