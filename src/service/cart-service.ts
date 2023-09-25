@@ -15,7 +15,6 @@ export function calculateTotal(cart: Cart) {
 }
 
 export function addDiscount(id:string, value: number, type: TypeDiscountEnum, cart: Cart){
-   
     if (type === "PERCENTAGE") {
         const percentage = value / 100;
         let discount = cart.getTotal().getTotal() * percentage;
@@ -26,6 +25,38 @@ export function addDiscount(id:string, value: number, type: TypeDiscountEnum, ca
         cart.getTotal().setTotal(round(discountTotal, 2));
     }
 }
+
+export function addDiscountItem(id:string, value: number, type: TypeDiscountEnum, cart: Cart){
+    let valorProporcional = 0;
+    let discount = value;
+
+    if (type === "PERCENTAGE") {
+        const percentage = value / 100;
+        discount = cart.getTotal().getTotal() * percentage;
+    }
+
+    for (let item of cart.getItens()) {
+        if (cart.getTotal().getTotal() > 0 && discount > 0) {
+            if (type === "FEE") {
+                if (cart.getTotal().getTotal() > discount) {
+                    valorProporcional = (item.amount * item.getTotal()) * (discount / (cart.getTotal().getTotal() - discount));
+                    item.addDiscount(id, valorProporcional);
+                }
+            } else {
+                // if (cart.getTotal().getTotal() > cart.getTotal().getTax()) {
+                //     valorProporcional = (item.amount * item.getTotal()) * (discount / (cart.getTotal().getTotal() - cart.getTotal().getTax()));
+                // }
+            }
+        }
+    }
+
+    const discountTotal = cart.getTotal().getTotal() - valorProporcional;
+    cart.getTotal().setTotal(round(discountTotal, 2));
+    console.log(discountTotal)
+    console.log(cart.getTotal())
+    console.log(cart.getItens())
+}
+
 
 export function addIncrease(id: string, value: number, type: TypeDiscountEnum, cart: Cart) {
     if (type === "PERCENTAGE") {

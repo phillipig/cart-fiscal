@@ -28,17 +28,8 @@ export class CartItem {
         return this.total;
     }
 
-    public addDiscount(id: string, value: number, type: TypeDiscountEnum) {
-        if (this.id === id) {
-            if (type === "PERCENTAGE") {
-                const percentage = value / 100;
-                this.discount = this.total * percentage;
-                this.total = this.total - this.discount;
-            } else if (type === "VALUE") {
-                this.discount = value;
-                this.total = this.total - this.discount;
-            }
-        }
+    public addDiscount(id: string, value: number) {
+        this.discount = value;
     }
     
     public removeDiscount(id: string) {

@@ -1,4 +1,5 @@
 export enum TypeDiscountEnum {
     PERCENTAGE = "PERCENTAGE",
-    VALUE = "VALUE"
+    VALUE = "VALUE",
+    FEE = "FEE"
 }
