@@ -6,18 +6,29 @@ export class Cart {
     private itens: CartItem[] = [];
     private payments: CartPayment[] = [];
     private total: CartTotal = new CartTotal();
+    private discount: number = 0;
+    private increase: number = 0;
 
-    public addItem(id: string, description: string, amount: number, unitaryValue: number) {
+    public setItem(id: string, description: string, amount: number, unitaryValue: number) {
         this.itens.push(new CartItem(id, description, amount, unitaryValue));
         calculateTotal(this);
     }
 
-    removeItem(id: string) {
+    public removeItem(id: string) {
         let index = this.itens.findIndex((item) => item.id === id);
         if (index !== -1) {
             this.itens.splice(index, 1);
         }
         return this.itens;
+    }
+
+    public setDiscount(id: string, discount: number){
+        this.discount += discount;
+    }
+
+    
+    public getDiscount(): number{
+        return this.discount;
     }
 
     public getItens(): CartItem[] {

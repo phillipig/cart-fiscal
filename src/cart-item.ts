@@ -3,6 +3,7 @@ import { TypeDiscountEnum } from "./enum/TypeDiscountEnum"
 import { round } from "./service/currency-service"
 
 export class CartItem {
+
     public id: string = ""
     public description: string = ""
     public amount: number = 0
@@ -11,11 +12,13 @@ export class CartItem {
     public discount: number = 0;
     public increase: number = 0;
 
-    constructor(id: string, description: string, amount: number, unitaryValue: number) {
+    constructor(id: string, description: string, amount: number, unitaryValue: number, discount?: number, increase?:number) {
         this.id = id;
         this.description = description;
-        this.amount;
-        this.unitaryValue;
+        this.amount = amount;
+        this.unitaryValue= unitaryValue;
+        this.discount = discount ? discount : 0;
+        this.increase = increase ? increase : 0;
         this.calculateTotal(amount, unitaryValue);
     }
 
@@ -38,6 +41,15 @@ export class CartItem {
             this.discount = 0;
         }
     }
+
+    getIncrease() {
+        return this.increase;
+    }
+    
+    getAmout() {
+        return this.amount;
+    }
+
     
     public addIncrease(id: string, value: number, type: TypeDiscountEnum) {
         if (this.id === id) {

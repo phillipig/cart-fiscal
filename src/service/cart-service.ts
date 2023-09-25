@@ -4,11 +4,15 @@ import { round } from "./currency-service";
 
 export function calculateTotal(cart: Cart) {
     let total: number = 0;
+    let amount: number = 0;
     let discount: number = 0;
     let increase: number = 0;
 
     for (let item of cart.getItens()) {
         total += item.getTotal();
+        amount += item.getAmout();
+        discount += item.getDiscount();
+        increase += item.getIncrease();
     }
     
     cart.getTotal().setTotal(round(total));
@@ -26,35 +30,34 @@ export function addDiscount(id:string, value: number, type: TypeDiscountEnum, ca
     }
 }
 
-export function addDiscountItem(id:string, value: number, type: TypeDiscountEnum, cart: Cart){
+export function addDiscountItem(id: string, value: number, type: TypeDiscountEnum, cart: Cart,) {
     let valorProporcional = 0;
     let discount = value;
 
     if (type === "PERCENTAGE") {
         const percentage = value / 100;
         discount = cart.getTotal().getTotal() * percentage;
+        
     }
-
     for (let item of cart.getItens()) {
         if (cart.getTotal().getTotal() > 0 && discount > 0) {
-            if (type === "FEE") {
+            if (type === "VALUE") {
                 if (cart.getTotal().getTotal() > discount) {
                     valorProporcional = (item.amount * item.getTotal()) * (discount / (cart.getTotal().getTotal() - discount));
-                    item.addDiscount(id, valorProporcional);
+                    item.addDiscount(id, round(valorProporcional, 2));
                 }
             } else {
-                // if (cart.getTotal().getTotal() > cart.getTotal().getTax()) {
-                //     valorProporcional = (item.amount * item.getTotal()) * (discount / (cart.getTotal().getTotal() - cart.getTotal().getTax()));
-                // }
+                if (cart.getTotal().getTotal() > cart.getTotal().getTax()) {
+                    valorProporcional = (item.amount * item.getTotal()) * (discount / (cart.getTotal().getTotal() - cart.getTotal().getTax()));
+                    item.addDiscount(id, round(valorProporcional, 2));
+                }
             }
         }
     }
 
-    const discountTotal = cart.getTotal().getTotal() - valorProporcional;
-    cart.getTotal().setTotal(round(discountTotal, 2));
-    console.log(discountTotal)
-    console.log(cart.getTotal())
-    console.log(cart.getItens())
+    cart.setDiscount(id, valorProporcional);
+    const totalValue = cart.getTotal().getTotal() - valorProporcional;
+    cart.getTotal().setTotal(round(totalValue, 2));
 }
 
 
