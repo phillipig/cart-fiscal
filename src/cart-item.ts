@@ -1,9 +1,5 @@
-import { CartTotal } from "./cart-total"
 import { TypeDiscountEnum } from "./enum/TypeDiscountEnum"
-import { round } from "./service/currency-service"
-
 export class CartItem {
-
     public id: string = ""
     public description: string = ""
     public amount: number = 0
@@ -21,10 +17,19 @@ export class CartItem {
         this.increase = increase ? increase : 0;
         this.calculateTotal(amount, unitaryValue);
     }
-
     
-    //TODO
     public removeItem(id: string){ 
+        if(this.id === id) {
+            const itemTotal = this.amount * this.unitaryValue;
+            this.total -= itemTotal;
+        
+            this.id = '';
+            this.description = '';
+            this.amount = 0;
+            this.unitaryValue = 0;
+            this.discount = 0;
+            this.increase = 0;
+          }
     }
 
     public getTotal(): number {

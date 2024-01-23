@@ -25,7 +25,6 @@ export class Cart {
     public setDiscount(id: string, discount: number){
         this.discount += discount;
     }
-
     
     public getDiscount(): number{
         return this.discount;
@@ -48,15 +47,16 @@ export class Cart {
     }
 
     public saveCart() {
-        //transforma o cart em um JSON
-    }
-
-
-    public toJson(): string {
         return JSON.stringify(this);
     }
 
     public fromJson(json: string) {
-        //TODO
+        const cart = JSON.parse(json);
+        this.itens = cart.itens;
+        this.payments = cart.payments;
+        this.total = cart.total;
+        this.discount = cart.discount;
+        this.increase = cart.increase;
+        return this;
     }
 }
